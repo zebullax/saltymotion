@@ -1,0 +1,21 @@
+link(rel="stylesheet", href="/css/email/style.css", data-inline)
+
+.backdrop
+  .mail_container
+    .header_logo
+      img(src='cid:logo_review_complete')
+    .content.center_content
+      .header_text
+        span.text_color Hi #{''}
+        span.primary_color #{toName} #{''}
+        span.text_color Your review is complete !
+      .content_text
+        span.primary_color.bold #{fromName} #{''}
+        span.text_color has completed your #{''}
+        span.secondary_color.bold #{game} #{''}
+        span.text_color review. To watch it, visit us right now !
+      .button_container.center_content
+        a.email__confirm_email_button(href=`https://www.saltymotion.com/atelier/${atelierID}`) Go to my review
+    .mail_footer
+      span.text_color Email sent by&nbsp;
+      a.primary_color(href='https://www.saltymotion.com') www.Saltymotion.com

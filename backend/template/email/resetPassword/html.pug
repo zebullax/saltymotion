@@ -1,0 +1,17 @@
+link(rel="stylesheet", href="/css/email/style.css", data-inline)
+
+.backdrop
+  .mail_container
+    .header_logo
+      img(src='cid:logo_reset_email')
+    .content.center_content
+      .header_text
+        span.text_color Forgot your password&nbsp;
+        span.primary_color #{nickname}&nbsp;
+        span.text_color ?
+      .content_text.text_color We received a request to reset your password. If that didn't come from you, you can ignore this email. Otherwise, click the button below to reset your password
+      .button_container.center_content
+        a.email__confirm_email_button(href='https://www.saltymotion.com/login?action=resetPassword&token=' + secret) Reset Password
+    .mail_footer
+      span.text_color Email sent by&nbsp;
+      a.primary_color(href='https://www.saltymotion.com') www.Saltymotion.com

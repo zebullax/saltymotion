@@ -1,0 +1,22 @@
+link(rel="stylesheet", href="/css/email/style.css", data-inline)
+
+.backdrop
+  .mail_container
+    .header_logo
+      img(src='cid:logo_new_comment')
+    .content.center_content
+      .header_text
+        span.text_color Hi #{''}
+        span.primary_color #{toName} #{''}
+        span.text_color a new comment was posted on your video !
+      .content_text
+        span.primary_color.bold #{fromName} #{''}
+        span.text_color just left a new comment on your atelier #{''}
+        span.secondary_color.bold #{atelierTitle} #{''}
+        div.quote_container.text_color.center_content.italic "#{excerpt}"
+        span.text_color Visit us to check the full discussion
+      .button_container.center_content
+        a.email__confirm_email_button(href=`https://www.saltymotion.com/atelier/${atelierID}`) Check the discussion
+    .mail_footer
+      span.text_color Email sent by&nbsp;
+      a.primary_color(href='https://www.saltymotion.com') www.Saltymotion.com

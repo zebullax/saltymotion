@@ -1,0 +1,94 @@
+#!/usr/bin/env node
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load();
+}
+// Node/Express
+const http = require('http');
+const path = require('path');
+// Misc
+const jwt = require('jsonwebtoken');
+const socketIO = require('socket.io');
+require('underscore');
+// Saltymotion
+const {app} = require('../app.js');
+const ioUtil = require('../lib/websocket/websocketUtility.js');
+const appLogger = require('../lib/log/logger')
+  .createLogger(process.env.NODE_ENV === 'production' ? 'warn' : 'debug', path.join(process.env.NODE_LOG_PATH, 'log'));
+
+/**
+ * Handle error on port assignment
+ * @callback
+ * @param {object} error
+ * @param {number} port
+ */
+function onError(error, port) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  const bind = `Port ${port}`;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      appLogger.error(`${bind} requires elevated privileges`);
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      appLogger.error(`${bind} is already in use`);
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Handle listening state for server
+ * @callback
+ * @param {object} server
+ */
+function onListening(server) {
+  appLogger.debug(`Listening on port ${server.address().port}`);
+}
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = parseInt(process.env.SALTY_PORT || '3000', 10);
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+const server = http.createServer(app);
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port);
+server.on('error', (error) => {
+  onError(error, port);
+});
+server.on('listening', () => {
+  onListening(server);
+});
+
+const io = socketIO(server);
+
+io.on('connection', (socket) => {
+  const {authorization} = socket.handshake.headers;
+  const payload = authorization.split(' ')[1];
+  jwt.verify(payload, process.env.JWT_SECRET, {algorithms: ['HS256']}, (err, user) => {
+    if (err) {
+      appLogger.error(`Error while verifying token on socketIO connection: ${err}`);
+    } else {
+      const roomID = ioUtil.getRoomForUserID(user.ID);
+      appLogger.debug(`SocketIO: user ${user.ID} on socket ${socket.id} joined room ${roomID}`);
+      socket.join(roomID);
+    }
+  });
+});
+
+app.io = io;

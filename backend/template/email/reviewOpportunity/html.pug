@@ -1,0 +1,22 @@
+link(rel="stylesheet", href="/css/email/style.css", data-inline)
+
+.backdrop
+  .mail_container
+    .header_logo
+      img(src='cid:logo_auction_opportunity')
+    .content.center_content
+      .header_text
+        span.text_color Congratulations  #{''}
+        span.primary_color #{toName} #{''}
+        span.text_color We have a review opportunity for you !
+      .content_text
+        span.text_color You were picked as a potential reviewer by&nbsp;
+        span.primary_color.bold #{fromName} #{''}
+        span.text_color to analyze a #{''}
+        span.secondary_color.bold #{game} #{''}
+        span.text_color replay. If you want to accept and claim the bounty of #{bounty}, visit us right away!
+      .button_container.center_content
+        a.email__confirm_email_button(href=`https://www.saltymotion.com/atelier/${atelierID}`) Go to replay
+    .mail_footer
+      span.text_color Email sent by&nbsp;
+      a.primary_color(href='https://www.saltymotion.com') www.Saltymotion.com

@@ -1,0 +1,98 @@
+a {
+  text-decoration: none;
+}
+
+.backdrop {
+  background-color: #1d232a;
+  width: 100%;
+  color: #e3ddd6;
+}
+
+.mail_container {
+  font-family: "Roboto", sans-serif;
+  margin: auto;
+  max-width: 500px;
+  padding: 8px;
+}
+
+.content {
+  background-color: #272f38;
+  width: 80%;
+  padding: 8px 24px;
+  border-radius: 8px;
+  margin: auto;
+}
+
+.primary_color {
+  color: #3daeff;
+}
+
+.secondary_color {
+  color: #5eb085;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.header_text {
+  padding: 16px 0;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.text_color {
+  color: #e3ddd6;
+}
+
+.quote_container {
+  width: 70%;
+  text-align: center;
+  padding: 8px;
+  background: #1d232a;
+  margin: 16px auto;
+  border-radius: 4px;
+}
+
+.content_text {
+  font-size: 14px;
+  text-align: center;
+}
+.mail_footer {
+  padding: 16px 0;
+  text-align: right;
+  width: 100%;
+  color: #4d4d4c;
+  font-weight: bold;
+  margin-top: 24px;
+  display: inline-block;
+}
+
+.header_logo > img {
+  width: 75%;
+  display: block;
+  margin: auto;
+  padding: 16px 8px;
+}
+
+.button_container {
+  margin: 16px;
+}
+.center_content {
+  text-align: center;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.email__confirm_email_button {
+  text-align: center;
+  padding: 0.5rem 1.5rem;
+  line-height: 3rem;
+  background: #3daeff;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+}

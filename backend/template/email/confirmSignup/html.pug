@@ -1,0 +1,16 @@
+link(rel="stylesheet", href="/css/email/style.css", data-inline)
+
+.backdrop
+  .mail_container
+    .header_logo
+      img(src='cid:logo_confirm_email')
+    .content.center_content
+      .header_text
+        span.text_color Welcome&nbsp;
+        span.primary_color #{nickname}
+      .content_text.text_color Please click the button below to confirm your email address and activate your account
+      .button_container.center_content
+        a.email__confirm_email_button(href='https://www.saltymotion.com/api/v1/users/' + userID + '/verify/' + secret) Verify Email
+    .mail_footer
+      span.text_color Email sent by&nbsp;
+      a.primary_color(href='https://www.saltymotion.com') www.Saltymotion.com
